@@ -53,14 +53,14 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKeyDown(JumpKey) && isGrounded)
         {
             rb.velocity = ( new Vector3(rb.velocity.x,
-                Mathf.Sqrt(JumpForce * -2f * Gravity),
+                Mathf.Sqrt(JumpForce /* * -2f * Gravity */ * Time.deltaTime),
                 rb.velocity.z
                 ));
         }
 
         //use gravity:
         //rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + Gravity, rb.velocity.z);
-        rb.AddForce(Vector3.up * Gravity);
+        rb.AddForce(Vector3.up * Gravity * Time.deltaTime);
 
         //slow down in air and ground
         //rb.AddForce((delY(rb.velocity) * -1).normalized * SlowingMultiplier);
